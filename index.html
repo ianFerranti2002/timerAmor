@@ -48,15 +48,6 @@
             transition: transform 0.5s ease;
         }
 
-        .carousel-buttons {
-            position: absolute;
-            top: 50%;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            transform: translateY(-50%);
-        }
-
         .carousel-dots {
             display: flex;
             justify-content: center;
@@ -157,6 +148,7 @@
     <p>Nossa história está sendo escrita há:</p>
     <div class="timer" id="timeTogether">
         <div class="timer-box" id="years">0 <span>anos</span></div>
+        <div class="timer-box" id="months">0 <span>meses</span></div> 
         <div class="timer-box" id="days">0 <span>dias</span></div>
         <div class="timer-box" id="hours">0 <span>horas</span></div>
         <div class="timer-box" id="minutes">0 <span>minutos</span></div>
@@ -171,12 +163,14 @@
             const diff = now - startDate;
 
             const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365));
+            const months = Math.floor(diff / (1000 * 60 * 60 * 24 * 30)) % 12;
             const days = Math.floor(diff / (1000 * 60 * 60 * 24)) % 365;
             const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
             const minutes = Math.floor((diff / (1000 * 60)) % 60);
             const seconds = Math.floor((diff / 1000) % 60);
 
             document.getElementById("years").innerText = `${years} anos`;
+            document.getElementById("months").innerText = `${months} meses`;
             document.getElementById("days").innerText = `${days} dias`;
             document.getElementById("hours").innerText = `${hours} horas`;
             document.getElementById("minutes").innerText = `${minutes} minutos`;
@@ -207,7 +201,7 @@
             showSlide(currentSlide);
         }
 
-        setInterval(autoSlide, 3000); // Troca de imagem a cada 3 segundos
+        setInterval(autoSlide, 3000);
 
         showSlide(currentSlide);
     </script>
